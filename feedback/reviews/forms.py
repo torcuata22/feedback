@@ -1,4 +1,4 @@
 from django import forms
 
-class ReviewFroms(forms.Form):
+class ReviewForm(forms.Form):
     user_name = forms.CharField()

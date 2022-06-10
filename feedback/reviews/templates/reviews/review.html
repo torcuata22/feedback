@@ -9,8 +9,7 @@
 <body> 
     <form method="POST">
         {% csrf_token %}
-        <label for="username">Your name</label>
-        <input id="username" name="username" type="text" placeholder="Your Name">
+        {{ form }}
         <button type="submit">Send</button>
     </form>
 
