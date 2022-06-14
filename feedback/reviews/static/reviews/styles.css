@@ -45,3 +45,25 @@ button:active {
     outline: none;
     background-color: #f4eeff;
 }
+
+.form-control label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.errorlist {
+    list-style: none;
+    margin: 0.5rem;
+    padding: 0;
+    color: rgb(105, 4, 4);
+}
+
+.errors input {
+    border-color: rgb(105, 4, 4);
+    background-color: rgb(239, 215, 215);
+}
+
+.errors label {
+color: #680000;
+}
