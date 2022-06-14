@@ -12,6 +12,12 @@ from .models import Review
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = '__all__'  #this is a special identifier that adds all the fields
+        fields = '__all__'  #this is a special identifier that adds all the fields of the model to the form (except for id field)
         #if I don't want all the fields to show to user, create a list of fields to be included in the form, for example: fields = ['review_text', 'rating'] 
+        # OR I could use exclude = ['list of fields taht should be excluded']
+        labels = {
+            "user_name": "Your Name",
+            "review_text":"Your feedback",
+            "ratings": "Your Rating" 
+        }
         
