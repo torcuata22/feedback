@@ -11,9 +11,10 @@ def review(request):
         if form.is_valid():
             print(form.cleaned_data)
             return HttpResponseRedirect("/thank_you")   # redirects to new page, creating GET request instead of another from method=POST
-        
-
-    form = ReviewForm()        
+    
+    else:
+        form = ReviewForm()  
+              
     return render(request, "reviews/review.html", {
        "form": form 
     } )
