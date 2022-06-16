@@ -3,7 +3,7 @@ from django.shortcuts import render
 from .forms import ReviewForm 
 from django.views import View 
 from django.views.generic.base import TemplateView
-#from .models import Review (because with a ModelForm I don't need the Review instance)
+from .models import Review #(with a ModelForm I don't need the Review instance, but I'm importing it for the TemplateView so I can access th reviews and display them)
 
 # Create your views here.
 #in this case, get() and post() are dedicated methods from django taht automatically detect which requet is which
@@ -50,6 +50,17 @@ class ThankYouView(TemplateView):
         context=super().get_context_data(**kwargs)
         context['message'] = "This works!"
         return context
+
+class ReviewsListViews(TemplateView):
+    template_name= "reviews/review_list.html"
+    
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        reviews=Review.objects.all()
+        context['reviews']=reviews
+        return context
+        
+    
   
 #def thank_you (request):
     #return render(request, "reviews/thank_you.html" )
