@@ -5,7 +5,7 @@ from django.views import View
 #from .models import Review (because with a ModelForm I don't need the Review instance)
 
 # Create your views here.
-
+#in this case, get() and post() are dedicated methods from django taht automatically detect which requet is which
 class ReviewView (View):
     def get(self,request):
         form = ReviewForm()  
@@ -17,7 +17,10 @@ class ReviewView (View):
         form = ReviewForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect("/thank-you")
+            return HttpResponseRedirect("/thank_you")
+        return render(request, "reviews/review.html", {
+        "form": form 
+    } )
     
         '''
 def review(request):
