@@ -15,12 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from feedback.reviews.views import ReviewsListViews
 from reviews import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path("", include("reviews.urls"))
     path("",views.ReviewView.as_view()),
-    path("thank_you", views.ThankYouView.as_view())
+    path("thank_you", views.ThankYouView.as_view()),
+    path("reviews", views.ReviewListView.as_view())
     
 ]

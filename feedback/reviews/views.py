@@ -51,7 +51,7 @@ class ThankYouView(TemplateView):
         context['message'] = "This works!"
         return context
 
-class ReviewsListViews(TemplateView):
+class ReviewListView(TemplateView):
     template_name= "reviews/review_list.html"
     
     def get_context_data(self, **kwargs):
