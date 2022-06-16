@@ -21,6 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #path("", include("reviews.urls"))
     path("",views.ReviewView.as_view()),
-    path("thank_you", views.thank_you)
+    path("thank_you", views.ThankYouView.as_view())
     
 ]

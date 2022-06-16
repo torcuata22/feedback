@@ -9,7 +9,6 @@ from django.views import View
 class ReviewView (View):
     def get(self,request):
         form = ReviewForm()  
-              
         return render(request, "reviews/review.html", {
         "form": form 
     } )
@@ -42,6 +41,11 @@ def review(request):
        "form": form 
     } )
         '''
+        
+class ThankYouView(View):
+    def get(self, request):
+        return render(request, "reviews/thank_you.html" )
+                
   
-def thank_you (request):
-    return render(request, "reviews/thank_you.html" )
+#def thank_you (request):
+    #return render(request, "reviews/thank_you.html" )
