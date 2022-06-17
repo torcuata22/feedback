@@ -11,17 +11,19 @@ from django.views.generic.edit import FormView
 from django.views.generic.edit import CreateView
 
 # Create your views here.
-#in this case, get() and post() are dedicated methods from django taht automatically detect which requet is which
+#in this case, get() and post() are dedicated methods from django that automatically detect which requet is which
 class ReviewView (CreateView):
     model = Review
-    fields = "__all__" #takes all the fields from the model mentioned above
+    form_class = ReviewForm #so I can customize what I want
+    #fields = "__all__"  takes all the fields from the model mentioned above, BUT it doesn't allow to customize
     #form_class = ReviewForm Necesary for FormView, but not for CreateView
     template_name = "reviews/review.html"
     success_url = "/thank_you"
     
-    def form_valid(self, form):
-        form.save()
-        return super().form_valid(form)
+    #I don't need it because I'm working with CreateView
+    # def form_valid(self, form):
+    #     form.save()
+    #     return super().form_valid(form)
     
     
     #Django takes care of these now:
