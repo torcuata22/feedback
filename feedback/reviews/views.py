@@ -8,11 +8,14 @@ from django.views.generic.base import TemplateView
 from django.views.generic import ListView, DetailView
 from .models import Review #(with a ModelForm I don't need the Review instance, but I'm importing it for the TemplateView so I can access th reviews and display them)
 from django.views.generic.edit import FormView
+from django.views.generic.edit import CreateView
 
 # Create your views here.
 #in this case, get() and post() are dedicated methods from django taht automatically detect which requet is which
-class ReviewView (FormView):
-    form_class = ReviewForm 
+class ReviewView (CreateView):
+    model = Review
+    fields = "__all__" #takes all the fields from the model mentioned above
+    #form_class = ReviewForm Necesary for FormView, but not for CreateView
     template_name = "reviews/review.html"
     success_url = "/thank_you"
     
