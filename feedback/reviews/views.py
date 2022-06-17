@@ -5,27 +5,38 @@ from django.shortcuts import render
 from .forms import ReviewForm 
 from django.views import View 
 from django.views.generic.base import TemplateView
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Review #(with a ModelForm I don't need the Review instance, but I'm importing it for the TemplateView so I can access th reviews and display them)
+from django.views.generic.edit import FormView
 
 # Create your views here.
 #in this case, get() and post() are dedicated methods from django taht automatically detect which requet is which
-class ReviewView (View):
-    def get(self,request):
-        form = ReviewForm()  
-        return render(request, "reviews/review.html", {
-        "form": form 
-    } )
-    def post(self, request):
-        form = ReviewForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect("/thank_you")
-        return render(request, "reviews/review.html", {
-        "form": form 
-    } )
+class ReviewView (FormView):
+    form_class = ReviewForm 
+    template_name = "reviews/review.html"
+    success_url = "/thank_you"
     
-        '''
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+    
+    
+    #Django takes care of these now:
+    # def get(self,request):
+    #     form = ReviewForm()  
+    #     return render(request, "reviews/review.html", {
+    #     "form": form 
+    # } )
+    # def post(self, request):
+    #     form = ReviewForm(request.POST)
+    #     if form.is_valid():
+    #         form.save()
+    #         return HttpResponseRedirect("/thank_you")
+    #     return render(request, "reviews/review.html", {
+    #     "form": form 
+    # } )
+    
+    '''
 def review(request):
     if request.method == 'POST':
         form = ReviewForm(request.POST)
@@ -67,15 +78,17 @@ class ReviewsListView(ListView):
     #     return data
    
     
-class SingleReviewView(TemplateView):
+class SingleReviewView(DetailView):
     template_name= "reviews/single_review.html"
+    model = Review
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs) #remember: this is a dictionary
-        review_id = kwargs["id"]
-        selected_review = Review.objects.get(pk=review_id)
-        context["review"]= selected_review
-        return context
+     
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs) #remember: this is a dictionary
+    #     review_id = kwargs["id"]
+    #     selected_review = Review.objects.get(pk=review_id)
+    #     context["review"]= selected_review
+    #     return context
     
         
     
