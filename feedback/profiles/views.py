@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponseRedirect
 from .forms import ProfileForm
+from .models import UserProfile
 
 # Create your views here.
 #helper finction:
@@ -19,7 +20,13 @@ class CreateProfileView(View):
         })
 
     def post(self, request):
-        store_file(request.FILES["image"])
-        return HttpResponseRedirect("/profiles")
+        submitted_form=ProfileForm(request.POST, request.FILES)
+        if submitted_form.is_valid():
+            #store_file(request.FILES["image"]) will substitute for model
+            profile = UserProfile(image=request.FILES["user_image"]) #user_image because this is the name of the field in the model
+            return HttpResponseRedirect("/profiles")
+        return render(request, "profiles/create_profile.html", {
+            "form":submitted_form
+        }) #this added basic validation wihtout us having to write the logic for it
     
         
