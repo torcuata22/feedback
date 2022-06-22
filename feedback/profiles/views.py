@@ -24,7 +24,9 @@ class CreateProfileView(View):
         if submitted_form.is_valid():
             #store_file(request.FILES["image"]) will substitute for model
             profile = UserProfile(image=request.FILES["user_image"]) #user_image because this is the name of the field in the model
+            profile.save()
             return HttpResponseRedirect("/profiles")
+           
         return render(request, "profiles/create_profile.html", {
             "form":submitted_form
         }) #this added basic validation wihtout us having to write the logic for it
