@@ -6,10 +6,11 @@ from .models import UserProfile
 
 # Create your views here.
 #helper finction:
-def store_file(file):
-    with open("temp/image.jpg", "wb+") as dest:
-        for chunk in file.chunks():
-            dest.write(chunk)
+#def store_file(file):
+    #with open("temp/image.jpg", "wb+") as dest:
+        #for chunk in file.chunks():
+            #dest.write(chunk)
+#not needed anymore because I'm using model
         
     
 class CreateProfileView(View):
