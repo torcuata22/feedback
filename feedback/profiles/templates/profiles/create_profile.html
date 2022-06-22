@@ -9,8 +9,8 @@
   <link rel="stylesheet" href="{% static 'profiles/styles.css' %}">
 </head>
 <body>
-  <form action = "/profiles">
-    <input type="file" />
+  <form action = "/profiles" method = "POST" enctype = "multipart/form-data">
+    <input type="file" name = "image"/>
     <button>Upload!</button>
   </form>
 </body>
