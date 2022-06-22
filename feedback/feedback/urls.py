@@ -24,6 +24,7 @@ urlpatterns = [
     path("",views.ReviewView.as_view()),
     path("thank_you", views.ThankYouView.as_view()),
     path("reviews", views.ReviewsListView.as_view()),
-    path("reviews/<int:pk>", views.SingleReviewView.as_view())
+    path("reviews/<int:pk>", views.SingleReviewView.as_view()),
+    path("profiles/", include("profiles.urls"))
     
 ]
