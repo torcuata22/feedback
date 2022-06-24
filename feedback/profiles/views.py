@@ -14,9 +14,11 @@ from .models import UserProfile
         #for chunk in file.chunks():
             #dest.write(chunk)
 #not needed anymore because I'm using model
+
+
 class CreateProfileView(CreateView):
     template_name = "profiles/create_profile.html"
-    model = ProfileForm
+    model = UserProfile
     fields = "__all__"
     success_url = "/profiles"
     #by ising this, validation and get/post is taken care of by Django
