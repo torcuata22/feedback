@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 #from feedback.reviews.views import ReviewsListViews
+from django.conf.urls.static import static
+from django.conf import settings
 from reviews import views
 
 urlpatterns = [
@@ -26,5 +28,4 @@ urlpatterns = [
     path("reviews", views.ReviewsListView.as_view()),
     path("reviews/<int:pk>", views.SingleReviewView.as_view()),
     path("profiles/", include ("profiles.urls"))
-    
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
