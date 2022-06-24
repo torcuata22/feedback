@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponseRedirect
+from django.views.generic.edit import CreateView
+
 from .forms import ProfileForm
 from .models import UserProfile
+
 
 # Create your views here.
 #helper finction:
@@ -11,8 +14,16 @@ from .models import UserProfile
         #for chunk in file.chunks():
             #dest.write(chunk)
 #not needed anymore because I'm using model
-        
+class CreateProfileView(CreateView):
+    template_name = "profiles/create_profile.html"
+    model = ProfileForm
+    fields = "__all__"
+    success_url = "/profiles"
+    #by ising this, validation and get/post is taken care of by Django
     
+        
+    '''
+    This is not needed anymore because I'm now using CreateView
 class CreateProfileView(View):
     def get(self, request):
         form = ProfileForm()
@@ -32,4 +43,4 @@ class CreateProfileView(View):
             "form":submitted_form
         }) #this added basic validation wihtout us having to write the logic for it
     
-        
+        '''
