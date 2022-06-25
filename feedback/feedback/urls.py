@@ -27,5 +27,7 @@ urlpatterns = [
     path("thank_you", views.ThankYouView.as_view()),
     path("reviews", views.ReviewsListView.as_view()),
     path("reviews/<int:pk>", views.SingleReviewView.as_view()),
+    path("reviews/favorite", views.AddFavoriteView.as_view()),   
+    path("reviews/<int:pk>", views.SingleReviewView.as_view()),
     path("profiles/", include ("profiles.urls"))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -12,6 +12,12 @@ from django.views.generic.edit import CreateView
 
 # Create your views here.
 #in this case, get() and post() are dedicated methods from django that automatically detect which requet is which
+class AddFavoriteView(View):
+    def post(self, request):
+        review_id = request.POST['review_id']
+        fav_review = Review.objects.get(ph=review_id)
+        request.session["favorite_review"]=fav_review #stores new information
+
 class ReviewView (CreateView):
     model = Review
     form_class = ReviewForm #so I can customize what I want
